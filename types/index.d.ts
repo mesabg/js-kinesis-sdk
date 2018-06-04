@@ -801,6 +801,7 @@ export class Transaction {
     fee: number;
     source: string;
     memo: Memo;
+    signatures: string[];
 }
 
 export class TransactionBuilder {
