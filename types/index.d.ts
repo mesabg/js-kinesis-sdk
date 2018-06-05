@@ -823,7 +823,7 @@ export namespace TransactionBuilder {
 }
 
 export class TransactionCallBuilder extends CallBuilder<TransactionRecord> {
-    transaction(transactionId: string): this;
+    transaction(transactionId: string): CallBuilder<TransactionRecord, TransactionRecord>;
     forAccount(accountId: string): this;
     forLedger(sequence: string | number): this;
 }
