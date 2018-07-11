@@ -155,7 +155,7 @@ export class CallBuilder {
   _sendNormalRequest(url) {
     // Ensure that we still hit the same endpoint that 
     //the server was instantiated on
-    url.origin(this.url.origin())
+    url.origin(this.url.origin());
 
     // Temp fix for: https://github.com/stellar/js-stellar-sdk/issues/15
     url.addQuery('c', Math.random());
