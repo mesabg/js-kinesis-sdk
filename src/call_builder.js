@@ -1,4 +1,4 @@
-import {NotFoundError, NetworkError, BadRequestError} from "./errors";
+import { NotFoundError, NetworkError, BadRequestError } from "./errors";
 import forEach from 'lodash/forEach';
 
 let URI = require("urijs");
@@ -34,7 +34,7 @@ export class CallBuilder {
       //append filters to original segments
       let newSegment = this.originalSegments.concat(this.filter[0]);
       this.url.segment(newSegment);
-    }        
+    }
   }
 
   /**
@@ -74,7 +74,7 @@ export class CallBuilder {
       timeout = setTimeout(() => {
         es.close();
         es = createEventSource();
-      }, options.reconnectTimeout || 15*1000);
+      }, options.reconnectTimeout || 15 * 1000);
     };
 
     var createEventSource = () => {
@@ -132,7 +132,7 @@ export class CallBuilder {
 
       return this._sendNormalRequest(uri).then(r => this._parseResponse(r));
     };
-  } 
+  }
 
   /**
    * Convert each link into a function on the response object.
@@ -151,15 +151,11 @@ export class CallBuilder {
     });
     return json;
   }
-  
-  _sendNormalRequest(url) {
-    if (url.authority() === '') {
-      url = url.authority(this.url.authority());
-    }
 
-    if (url.protocol() === '') {
-      url = url.protocol(this.url.protocol());
-    }
+  _sendNormalRequest(url) {
+    // Ensure that we still hit the same endpoint that 
+    //the server was instantiated on
+    url.origin(this.url.origin())
 
     // Temp fix for: https://github.com/stellar/js-stellar-sdk/issues/15
     url.addQuery('c', Math.random());
