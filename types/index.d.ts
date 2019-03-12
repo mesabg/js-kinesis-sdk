@@ -141,6 +141,7 @@ export interface LedgerRecord extends Record {
     header_xdr: string;
     base_fee_in_stroops: number;
     base_reserve_in_stroops: number;
+    max_fee: number;
 
     effects: CallCollectionFunction<EffectRecord>;
     operations: CallCollectionFunction<OperationRecord>;
@@ -163,7 +164,9 @@ export interface OfferRecord extends Record {
 
 export interface BaseOperationRecord extends Record {
     id: string;
+    created_at: string;
     paging_token: string;
+    transaction_hash: string;
     type: string;
     type_i: number;
 
