@@ -14,7 +14,7 @@ export class Account {
 }
 
 export class CallBuilder<T extends Record, U extends T | T[]= T[]> {
-    constructor(serverUrl: string)
+    constructor(serverUrl: string);
     call: U extends T[] ? CallCollectionFunction<T> : CallFunction<T>;
     cursor(cursor: string): this;
     limit(limit: number): this;
