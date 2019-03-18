@@ -147,11 +147,15 @@ export class CallBuilder {
       if (typeof json[key] != 'undefined') {
         json[`${key}_attr`] = json[key];
       }
+
+      n.href = n.href.replace('http:', 'https:');
+
       json[key] = this._requestFnForLink(n);
     });
+
     return json;
   }
-  
+
   _sendNormalRequest(url) {
     if (url.authority() === '') {
       url = url.authority(this.url.authority());
